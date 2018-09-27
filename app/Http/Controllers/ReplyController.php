@@ -38,9 +38,10 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($channelId,Thread $thread)
+    public function store($channelId,Thread $thread,Spam $spam)
     {
         $this->validate(request(),['body'=>'required']);
+        $spam->detect(request('body'));
         $reply=$thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()

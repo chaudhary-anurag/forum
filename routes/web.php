@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,8 +18,6 @@ Route::get('/profiles/{user}/notifications','UserNotificationsController@index')
 
 Route::delete('/profiles/{user}/notifications/{notification}','UserNotificationsController@destroy');
 
-
-Auth::routes();
 Route::post('/threads/{channel}/{thread}/subscriptions','ThreadSubscriptionsController@store')->middleware('auth');
 Route::get('/threads/create','ThreadController@create');
 
@@ -41,8 +39,6 @@ Route::get('/threads/{channel}/{thread}/replies','ReplyController@index');
 Route::post('/threads/{channel}/{thread}/replies','ReplyController@store');
 
 Route::delete('/replies/{reply}','ReplyController@destroy');
-
-
 
 Route::patch('/replies/{reply}','ReplyController@update');
 
