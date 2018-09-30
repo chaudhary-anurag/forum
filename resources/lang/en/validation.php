@@ -87,6 +87,7 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'spamfree'             => 'The :attribute contains spam.',
 
     /*
     |--------------------------------------------------------------------------
@@ -98,12 +99,15 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
+/*
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'title' => [
+            'spamfree' => 'The title contains spam.',
         ],
-    ],
+        'body' => [
+            'spamfree' => 'The body contains spam.'
+        ],
+            ],*/
 
     /*
     |--------------------------------------------------------------------------

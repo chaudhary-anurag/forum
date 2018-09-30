@@ -42,7 +42,7 @@ class ReplyController extends Controller
     public function store($channelId,Thread $thread)
     {
         try{
-        $this->validateReply();
+         $this->validate(request(),['body'=>'required|spamfree']);
         $reply=$thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()
@@ -86,13 +86,11 @@ class ReplyController extends Controller
     {
         $this->authorize('update',$reply);
         try {
-              $this->validateReply();
+              $this->validate(request(),['body'=>'required|spamfree']);
               $reply->update(request(['body']));
           }
         catch (\Exception $e){
-            return response{
-                'Sorry , your reply could not be saved at this time.',422
-            };
+         return response('Sorry, your reply could not be saved at this time', 422);
         }
     }
 
@@ -110,11 +108,5 @@ class ReplyController extends Controller
         return response(['status'=>'Reply deleted']);
        } 
        return back();
-    }
-
-    public function validateReply()
-    {
-        $this->validate(request(),['body'=>'required']);
-        resolve(Spam::class)->detect(request('body'));
     }
 }
