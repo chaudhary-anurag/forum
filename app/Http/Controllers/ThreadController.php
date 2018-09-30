@@ -23,7 +23,7 @@ class ThreadController extends Controller
 
     public function index(Channel $channel, ThreadFilters $filters)
     {
-
+      
       $threads=Thread::latest()->filter($filters);
       if($channel->exists)
       {
