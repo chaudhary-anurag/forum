@@ -99,16 +99,16 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-/*
-    'custom' => [
+
+    /*'custom' => [
         'title' => [
             'spamfree' => 'The title contains spam.',
         ],
         'body' => [
             'spamfree' => 'The body contains spam.'
         ],
-            ],*/
-
+            ],
+*/
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

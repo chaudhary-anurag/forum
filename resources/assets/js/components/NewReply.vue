@@ -29,8 +29,14 @@
      methods: {
      	addReply(){
      		axios.post(location.pathname+'/replies',{body:this.body})
-            .catch(error => {
-                flash(error.response.data,'danger');
+            .catch(error => { 
+                /*if(error.response.data.errors==undefined){
+                    flash(error.response.data,'danger');
+                   }
+                else{*/
+                     flash(error.response.data,'danger');
+                  /*  }
+                }*/
             })
      		.then(({data}) => {
                 this.body='';
