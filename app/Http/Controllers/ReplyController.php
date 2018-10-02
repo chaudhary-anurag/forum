@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Thread;
 use App\Inspections\Spam;
 use App\Reply;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -41,6 +42,10 @@ class ReplyController extends Controller
      */
     public function store($channelId,Thread $thread)
     {
+        if(Gate::denies('create', new Reply))
+            {
+              return response('You are posting too frequently. Refrain :)', 422);  
+            }
         try{
          $this->validate(request(),['body'=>'required|spamfree']);
         $reply=$thread->addReply([
