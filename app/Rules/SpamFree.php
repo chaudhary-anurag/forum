@@ -31,7 +31,7 @@ class SpamFree implements Rule
          }  
          catch(\Exception $e){
             return false;
-         }
+      }
        
     }
 
@@ -42,6 +42,6 @@ class SpamFree implements Rule
      */
     public function message()
     {
-        return 'The :attribute contains spam';
+        return trans('validation.spamfree');
     }
 }

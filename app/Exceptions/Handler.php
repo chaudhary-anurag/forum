@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use App\Exceptions\ThrottleException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -52,7 +53,7 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ValidationException){
             if($request->expectsJson()){
-            return response('Sorry, validation failed',422);
+            return response('Sorry, validation failed . Spamming not allowed',422);
              }
         }
         if ($exception instanceof ThrottleException){
