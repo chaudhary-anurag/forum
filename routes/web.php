@@ -47,3 +47,5 @@ Route::post('/replies/{reply}/favourites','FavouriteController@store');
 Route::delete('/replies/{reply}/favourites','FavouriteController@destroy');
 
 Route::get('/profiles/{user}','ProfileController@show')->name('profile');
+
+Route::get('api/users','Api\UsersController@index');
