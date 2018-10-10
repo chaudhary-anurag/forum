@@ -27,4 +27,4 @@
             </div>
           @empty
              <p>There are no threads for this channel.</p>
-          @endforelse
+ @endforelse
