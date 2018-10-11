@@ -16,6 +16,6 @@ class UserAvatarController extends Controller
        auth()->user()->update([
        	'avatar_path'=>request()->file('avatar')->store('avatars','public')
        ]);
-       return back();
+       return response([],204);
     }
 }

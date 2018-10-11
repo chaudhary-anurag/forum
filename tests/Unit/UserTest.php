@@ -16,9 +16,9 @@
  	public function test_user_can_determine_theri_avatar_path()
  	{
  		$user = create('App\User');
- 		$this->assertEquals('avatars/default.jpg',$user->avatar());
+ 		$this->assertEquals(asset('images/avatars/smile.jpg'),$user->avatar_path);
  		$user->avatar_path='avatars/me.jpg';
- 		$this->assertEquals('avatars/me.jpg',$user->avatar());
+ 		$this->assertEquals(asset('avatars/me.jpg'),$user->avatar_path);
  	}
 
  }
