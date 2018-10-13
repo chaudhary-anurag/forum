@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Notification;
 
 class ThreadTest extends TestCase
@@ -94,7 +95,6 @@ class ThreadTest extends TestCase
            $this->assertTrue($thread->hasUpdatesFor($user));
            $user->read($thread);
         $this->assertFalse($thread->hasUpdatesFalse($user)); 
-        });
-          
+        });     
     }
 }

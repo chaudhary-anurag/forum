@@ -5,6 +5,7 @@ namespace App;
 use App\Activity;
 use App\Notifications\ThreadWasUpdated;
 use App\Filters\ThreadFilters;
+use App\Visits;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 

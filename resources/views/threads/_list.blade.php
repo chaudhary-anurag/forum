@@ -24,6 +24,9 @@
                 <div class="panel-body">
                     <div class="body">{{$thread->body}}</div>
                 </div>
+                <div class="panel-footer">
+                  {{$thread->visits}} visits
+                </div>
             </div>
           @empty
              <p>There are no threads for this channel.</p>
