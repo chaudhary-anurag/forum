@@ -23,7 +23,7 @@ Route::get('/threads/create','ThreadController@create');
 
 Route::delete('/threads/{channel}/{thread}/subscriptions','ThreadSubscriptionsController@destroy')->middleware('auth');
 
-Route::get('/threads','ThreadController@index');
+Route::get('/threads','ThreadController@index')->name('threads');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/threads/{channel}','ThreadController@index');
@@ -32,7 +32,7 @@ Route::get('/threads/{channel}','ThreadController@index');
 Route::get('/threads/{channel}/{thread}','ThreadController@show');
 Route::delete('/threads/{channel}/{thread}','ThreadController@destroy');
 
-Route::post('/threads','ThreadController@store');
+Route::post('/threads','ThreadController@store')->middleware('must-be-confirmed');
 
 Route::get('/threads/{channel}/{thread}/replies','ReplyController@index');
 
@@ -47,6 +47,8 @@ Route::post('/replies/{reply}/favourites','FavouriteController@store');
 Route::delete('/replies/{reply}/favourites','FavouriteController@destroy');
 
 Route::get('/profiles/{user}','ProfileController@show')->name('profile');
+
+Route::get('/register/confirm','Api\RegisterConfirmationController@index')->name('register.confirm');
 
 Route::get('api/users','Api\UsersController@index');
 Route::post('api/users/{user}/avatar','Api\UserAvatarController@store')->middleware('auth')->name('avatar');

@@ -10,7 +10,7 @@ class CreateThreadsTest extends TestCase
 {
 	use DatabaseMigrations;
 
-    public function test_authenticated_user_can_create_new_threads()
+    public function test_user_can_create_new_threads()
     {
         $this->signIn();
         $thread = make('App\Thread');
@@ -49,7 +49,7 @@ class CreateThreadsTest extends TestCase
     {
     	$this->withExceptionHandling()->signIn();
     	$thread = make('App\Thread',$overrides);
-    	return $this->post('/threads',$thread->toArray());
+    	return $this->post(route('threads'),$thread->toArray());
     }
 
     public function test_guest_cant_create_threads()
@@ -59,13 +59,23 @@ class CreateThreadsTest extends TestCase
     	$this->post('/threads',$thread->toArray()); */ 
 
         $this->withExceptionHandling()     
-    	     ->post('/threads')
-             ->assertRedirect('/login');
+    	     ->post(route('threads'))
+             ->assertRedirect(route('login'));
 
          $this->withExceptionHandling()     
              ->get('/threads/create')
-             ->assertRedirect('/login');
+             ->assertRedirect(route('login'));
 
+    }
+
+    public function test_new_users_must_first_confirm_their_email_Address_before_creating_threads()
+    {
+        $user=factory('App\User')->states('unconfirmed')->create();
+        $this->signIn($user);
+        $thread = make('App\Thread');
+        $this->post(route('threads'),$thread->toArray())
+             ->assertRedirect(route('threads'))
+             ->assertSessionHas('flash','yOu must first confirm your email address.');
     }
 
     public function test_authorized_user_can_delete_threads()
