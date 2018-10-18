@@ -48,7 +48,7 @@ Route::delete('/replies/{reply}/favourites','FavouriteController@destroy');
 
 Route::get('/profiles/{user}','ProfileController@show')->name('profile');
 
-Route::get('/register/confirm','Api\RegisterConfirmationController@index')->name('register.confirm');
+Route::get('/register/confirm','Auth\RegisterConfirmationController@index')->name('register.confirm');
 
 Route::get('api/users','Api\UsersController@index');
 Route::post('api/users/{user}/avatar','Api\UserAvatarController@store')->middleware('auth')->name('avatar');
