@@ -62,7 +62,8 @@ class ThreadController extends Controller
         'user_id'=>auth()->id(),
         'channel_id'=>request('channel_id'),
         'title'=>request('title'),
-        'body'=>request('body')
+        'body'=>request('body'),
+        'slug'=>request('title')
        ]);
        return redirect($thread->path())
               ->with('flash','Your thread has been published');
