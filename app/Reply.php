@@ -13,7 +13,7 @@ class Reply extends Model
 
     protected $with=['owner','favourites'];
 
-    protected $appends=['FavouritesCount','isFavourited'];
+    protected $appends=['FavouritesCount','IsFavourited'];
 
     protected static function boot()
     {

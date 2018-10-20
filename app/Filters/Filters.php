@@ -18,23 +18,19 @@ abstract class Filters
 	public function apply($builder)
 	{
 		$this->builder=$builder;
-		foreach ($this->getFilters() as $filter=>$value)
+		foreach ($this->getFilters() as $filter=>$value)   //['by'=>'John']
 		{   
 			if(method_exists($this,$filter))
 			{
 				$this->$filter($value);
 			}
 		}
-	/*	if ($this->request->has('by'))
-		{
-			$this->by($this->request->by);
-		} */
 	  return $this->builder;
-      
 	}
 
 	public function getFilters()
 	{  
 	   return $this->request->only($this->filters);
+
 	}
 }
