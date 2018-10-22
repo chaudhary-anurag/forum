@@ -40,4 +40,13 @@ class ReplyTest extends TestCase
           'Hello <a href="/profiles/jae">@jae</a>',$reply->body
        ); 
 	}
+
+	public function test_it_knows_if_its_the_best()
+	{
+	   $reply=create('App\Reply');
+	   $this->assertFalse($reply->isBest());
+	   $reply->thread->update(['best_reply_id'=>$reply->id]);	
+	   $this->assertTrue($reply->fresh()->isBest());
+	   
+	}
 }

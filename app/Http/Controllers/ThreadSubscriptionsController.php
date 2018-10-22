@@ -17,8 +17,4 @@ class ThreadSubscriptionsController extends Controller
        $thread->unsubscribe();
     }
 
-    public function notify()
-    {
-    	
-    }
 }

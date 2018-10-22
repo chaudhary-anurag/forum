@@ -25,6 +25,7 @@
        .panel-body{word-wrap: break-word;}
        .level {display:flex; align-items: center;}
        .flex {flex: 1;}
+       .ml-a {margin-left:auto; }
        .mr-1{margin-right: 1em;}
       [v-cloak] {display: none;} 
     </style>
