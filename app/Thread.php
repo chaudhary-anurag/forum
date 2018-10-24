@@ -19,6 +19,10 @@ class Thread extends Model
 
    protected $with=['creator','channel'];
 
+   protected $casts=[
+      'locked'=>'boolean'
+   ];
+
    protected static function boot()
    {
       parent::boot();
