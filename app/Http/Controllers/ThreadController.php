@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use App\Thread;
 use App\Trending;
+use App\Rules\Recaptcha;
 use Carbon\Carbon;
 use App\Channel;
 
@@ -44,20 +45,15 @@ class ThreadController extends Controller
         return view('threads.create');
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Recaptcha $recaptcha)
     {
-        $this->validate($request, [
+       request()->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
-            'channel_id' => 'required|exists:channels,id'
-        ]);
+            'channel_id' => 'required|exists:channels,id',
+            'g-recaptcha-response'=>['required', $recaptcha]
+       ]);
+
        $thread=Thread::create([
         'user_id'=>auth()->id(),
         'channel_id'=>request('channel_id'),
@@ -107,12 +103,12 @@ class ThreadController extends Controller
      */
     public function update($channel, Thread $thread)
     {
-        if(request()->has('locked')){
-            if(! auth()->user()->isAdmin()){
-                return response('',403);
-            }
-            $thread->lock();
-        }
+       $this->authorize('update',$thread);
+       $thread->update(request()->validate([
+            'title' => 'required|spamfree',
+            'body' => 'required|spamfree'
+       ]));
+       return $thread;
     }
 
     /**

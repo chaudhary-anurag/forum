@@ -24,12 +24,13 @@
        body {padding-bottom: 100px; }
        .panel-body{word-wrap: break-word;}
        .level {display:flex; align-items: center;}
+       .level-item {margin-right:1em;}
        .flex {flex: 1;}
        .ml-a {margin-left:auto; }
        .mr-1{margin-right: 1em;}
       [v-cloak] {display: none;} 
     </style>
-    @yield('header')
+    @yield('head')
 </head>
 <body>
     <div id="app">

@@ -84,14 +84,11 @@ class ReplyController extends Controller
      * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
-    {
+    public function update(Reply $reply)
+    {   
         $this->authorize('update',$reply);
-        $this->validate(request(),['body'=>'required|spamfree']);
+        request()->validate(['body'=>'required|spamfree']);
         $reply->update(request(['body']));
-        /*catch (\Exception $e){
-         return response('Sorry, your reply could not be saved at this time', 422);
-        }*/
     }
 
     /**
