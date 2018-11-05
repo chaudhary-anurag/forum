@@ -18,6 +18,7 @@ Route::get('/profiles/{user}/notifications','UserNotificationsController@index')
 
 Route::delete('/profiles/{user}/notifications/{notification}','UserNotificationsController@destroy');
 
+Route::get('/threads/search','SearchController@show');
 Route::post('/threads/{channel}/{thread}/subscriptions','ThreadSubscriptionsController@store')->middleware('auth');
 Route::get('/threads/create','ThreadController@create');
 

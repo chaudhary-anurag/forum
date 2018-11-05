@@ -21,8 +21,7 @@
 
      methods: {
       toggleLock(){
-         let uri='/locked-threads/${this.thread.slug}';
-        axios[this.locked?'delete':'post'](uri);
+        axios[this.locked?'delete':'post']('/locked-threads/'+this.thread.slug);
         this.locked = !this.locked;
       },
       update(){
